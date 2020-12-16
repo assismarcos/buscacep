@@ -1,5 +1,7 @@
 package com.disciolli.buscacep.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -15,11 +17,37 @@ public class EnderecoService {
 	public EnderecoService(EnderecoRepository enderecoRepository) {
 		this.enderecoRepository = enderecoRepository;
 	}
-	
 
 	public Optional<Endereco> buscarEnderecoPorCep(String cep) {
-		return enderecoRepository.findById(cep);
+		Optional<Endereco> end = enderecoRepository.findById(cep);
+
+		if (end.isEmpty()) {
+
+			List<String> cepsProx = obterCepsProx(cep);
+
+			for (String cepProx : cepsProx) {
+				end = enderecoRepository.findById(cepProx);
+
+				if (end.isPresent())
+					return end;
+			}
+
+		}
+
+		return end;
 	}
-	
-	
+
+	private List<String> obterCepsProx(String cep) {
+		List<String> ret = new ArrayList<String>();
+
+		char[] chars = cep.toCharArray();
+
+		for (int i = cep.length() - 1; i > 0; i--) {
+			chars[i] = '0';
+			ret.add(String.valueOf(chars));
+		}
+
+		return ret;
+	}
+
 }

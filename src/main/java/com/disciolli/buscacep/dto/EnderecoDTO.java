@@ -11,7 +11,6 @@ public class EnderecoDTO {
 	}
 
 	public EnderecoDTO(String rua, String bairro, String cidade, String estado) {
-		super();
 		this.rua = rua;
 		this.bairro = bairro;
 		this.cidade = cidade;
