@@ -24,9 +24,9 @@ public class EnderecoController {
 	}
 	
 	@GetMapping(path = "/endereco", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<EnderecoDTO> buscaEnderecoPorCep(@Valid @RequestBody Cep cep) {
+	public ResponseEntity<EnderecoDTO> buscaEnderecoPorCep(@Valid @RequestBody CepRequest cep) {
 
-		Optional<Endereco> endereco = enderecoService.buscarEnderecoPorCep(cep.getNumero());
+		Optional<Endereco> endereco = enderecoService.buscarEnderecoPorCep(cep.getCep());
 		return endereco.isPresent() ? ResponseEntity.ok(endereco.get().toDTO()) : ResponseEntity.notFound().build();
 	}
 
