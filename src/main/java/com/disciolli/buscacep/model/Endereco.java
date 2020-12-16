@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.disciolli.buscacep.dto.EnderecoDTO;
+
 @Entity
 public class Endereco {
 
@@ -29,6 +31,10 @@ public class Endereco {
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.uf = uf;
+	}
+
+	public EnderecoDTO toDTO() {
+		return new EnderecoDTO(logradouro, bairro, cidade, uf);
 	}
 
 	public String getCep() {
