@@ -13,7 +13,7 @@ import com.disciolli.buscacep.repository.EnderecoRepository;
 public class EnderecoService {
 
 	private EnderecoRepository enderecoRepository;
-
+	
 	public EnderecoService(EnderecoRepository enderecoRepository) {
 		this.enderecoRepository = enderecoRepository;
 	}
@@ -23,10 +23,10 @@ public class EnderecoService {
 
 		if (end.isEmpty()) {
 
-			List<String> cepsProx = obterCepsProx(cep);
+			List<String> cepsAprox = obterCepsAprox(cep);
 
-			for (String cepProx : cepsProx) {
-				end = enderecoRepository.findById(cepProx);
+			for (String cepAprox : cepsAprox) {
+				end = enderecoRepository.findById(cepAprox);
 
 				if (end.isPresent())
 					return end;
@@ -37,7 +37,7 @@ public class EnderecoService {
 		return end;
 	}
 
-	private List<String> obterCepsProx(String cep) {
+	private List<String> obterCepsAprox(String cep) {
 		List<String> ret = new ArrayList<String>();
 
 		char[] chars = cep.toCharArray();
@@ -49,5 +49,6 @@ public class EnderecoService {
 
 		return ret;
 	}
+
 
 }

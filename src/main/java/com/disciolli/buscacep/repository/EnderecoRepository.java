@@ -7,7 +7,5 @@ import com.disciolli.buscacep.model.Endereco;
 
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, String> {
-	
-	Endereco findEnderecoByCep(String cep);
 
 }
