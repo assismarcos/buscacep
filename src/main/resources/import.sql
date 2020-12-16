@@ -1,0 +1,2 @@
+INSERT INTO endereco (cep, logradouro, bairro, cidade, uf) VALUES ('17526760', 'Avenida Maria Fernandes Cavallari - de 3150/3151 a 3298/3299', 'Altos da Colina', 'Marília', 'SP');
+INSERT INTO endereco (cep, logradouro, bairro, cidade, uf) VALUES ('17501000', 'Avenida Carlos Gomes - até 470/471', 'Marília', 'Marília', 'SP');
