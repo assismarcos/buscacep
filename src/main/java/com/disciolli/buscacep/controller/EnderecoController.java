@@ -1,7 +1,8 @@
 package com.disciolli.buscacep.controller;
 
-import java.util.Map;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,11 @@ public class EnderecoController {
 	public EnderecoController(EnderecoService enderecoService) {
 		this.enderecoService = enderecoService;
 	}
-
+	
 	@GetMapping(path = "/endereco", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<EnderecoDTO> buscaEnderecoPorCep(@RequestBody Map<String, String> cep) {
-		
-		Optional<Endereco> endereco = enderecoService.buscarEnderecoPorCep(cep.get("cep"));
-		
+	public ResponseEntity<EnderecoDTO> buscaEnderecoPorCep(@Valid @RequestBody Cep cep) {
+
+		Optional<Endereco> endereco = enderecoService.buscarEnderecoPorCep(cep.getNumero());
 		return endereco.isPresent() ? ResponseEntity.ok(endereco.get().toDTO()) : ResponseEntity.notFound().build();
 	}
 
