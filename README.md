@@ -47,11 +47,13 @@ Resposta
 Dividida em 3 camadas
 
 **Persistência**
+
 Foi criado a interface EnderecoRepository herdando de JpaRepository (Spring Data) para realizar operação de pesquisa no banco H2.
 Também foi criado a classe modelo Endereco para armazenar as informações de Rua, Bairro, Cidade, Estado e CEP. O mapeamento objeto-relacional é feito com JPA (Hibernate).
 
 
 **Negócio**
+
 Foi criado a classe EnderecoService para checar a existência do endereço e se necessário pesquisar pelos CEPs alternativos.
 
 **Apresentação**
@@ -60,7 +62,8 @@ Foi criado a classe EnderecoDTO para flexibilizar a formatação do retorno da A
 Foi criado a classe ControllerExceptionHandler para retornar mensagem de erro tratada.
 
 
-**Testes**
+## Testes
+
 A classe EnderecoServiceTest possui métodos para validar os cenários de (CEP válido, inválido, não encontrado) testando a integração da classe EnderecoService com a interface EnderecoRepository.
 
 Foi criado a classe EnderecoControllerTest com objetivo de simular o comportamento do método buscaEnderecoPorCep(cep) para vários cenários também utilizando dados mocados.
@@ -70,4 +73,8 @@ A classe EnderecoControllerIntegratioTest contém testes simulando a integraçã
 
 ## Extras
 O arquivo "import.sql" é um script SQL para popular o banco de dados com os endereços para teste.
+
+A documentação da API foi feita com Swagger e pode ser acessada em: 
+http://localhost:8080/swagger-ui/index.html
+
 O arquivo Dockerfile gera uma imagem para o Docker.
