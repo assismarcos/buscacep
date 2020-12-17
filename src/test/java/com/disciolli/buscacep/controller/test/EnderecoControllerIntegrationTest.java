@@ -34,7 +34,7 @@ public class EnderecoControllerIntegrationTest {
 		String cep = "17526760";
 
 		MvcResult mvcResult = mockMvc.perform(
-				MockMvcRequestBuilders.get("/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
+				MockMvcRequestBuilders.get("/api/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
 				.andReturn();
 
 		EnderecoDTO enderecoDTO = stringToEnderecoDTO(mvcResult.getResponse().getContentAsString());
@@ -49,7 +49,7 @@ public class EnderecoControllerIntegrationTest {
 		String cep = "17526123";
 
 		MvcResult mvcResult = mockMvc.perform(
-				MockMvcRequestBuilders.get("/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
+				MockMvcRequestBuilders.get("/api/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
 				.andReturn();
 
 		Assertions.assertEquals(mvcResult.getResponse().getStatus(), 200);
@@ -61,7 +61,7 @@ public class EnderecoControllerIntegrationTest {
 		String cep = "1752670";
 
 		MvcResult mvcResult = mockMvc.perform(
-				MockMvcRequestBuilders.get("/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
+				MockMvcRequestBuilders.get("/api/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
 				.andReturn();
 
 		Assertions.assertEquals(mvcResult.getResponse().getStatus(), 400);
@@ -73,7 +73,7 @@ public class EnderecoControllerIntegrationTest {
 		String cep = "99999999";
 
 		MvcResult mvcResult = mockMvc.perform(
-				MockMvcRequestBuilders.get("/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
+				MockMvcRequestBuilders.get("/api/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
 				.andReturn();
 
 		Assertions.assertEquals(mvcResult.getResponse().getStatus(), 404);
