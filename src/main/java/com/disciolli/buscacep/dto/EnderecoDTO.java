@@ -1,5 +1,8 @@
 package com.disciolli.buscacep.dto;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel("Endereco")
 public class EnderecoDTO {
 
 	private String rua;
