@@ -38,7 +38,7 @@ public class EnderecoService {
 	}
 
 	private List<String> obterCepsAprox(String cep) {
-		List<String> ret = new ArrayList<String>();
+		List<String> ret = new ArrayList<>();
 
 		char[] chars = cep.toCharArray();
 

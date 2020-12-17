@@ -16,7 +16,7 @@ import com.disciolli.buscacep.repository.EnderecoRepository;
 import com.disciolli.buscacep.service.EnderecoService;
 
 @SpringBootTest
-public class EnderecoServiceTest {
+class EnderecoServiceTest {
 
 	@Mock
 	private EnderecoRepository enderecoRepository;
@@ -25,9 +25,9 @@ public class EnderecoServiceTest {
 	private EnderecoService enderecoService;
 
 	@Test
-	public void testarCepExistente() {
+	void testarCepExistente() {
 		String cep = "17526000";
-		
+
 		when(enderecoRepository.findById(cep)).thenReturn(
 				Optional.of(new Endereco(cep, "Avenida Manoel Pereira", "Jardim Morumbi", "Marília", "SP")));
 
@@ -37,7 +37,7 @@ public class EnderecoServiceTest {
 	}
 
 	@Test
-	public void testarCepInexistente() {
+	void testarCepInexistente() {
 		String cep = "10000000";
 
 		when(enderecoRepository.findById(cep)).thenReturn(null);
@@ -49,7 +49,7 @@ public class EnderecoServiceTest {
 	}
 
 	@Test
-	public void testarCepAprox() {
+	void testarCepAprox() {
 
 		String cepInexistente = "17525123";
 		String cepAprox = "17520000";

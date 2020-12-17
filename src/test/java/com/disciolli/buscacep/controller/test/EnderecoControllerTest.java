@@ -25,54 +25,52 @@ import com.disciolli.buscacep.repository.EnderecoRepository;
 import com.disciolli.buscacep.service.EnderecoService;
 
 @SpringBootTest
-public class EnderecoControllerTest {
+class EnderecoControllerTest {
 
 	@InjectMocks
 	private EnderecoController enderecoController;
-	
+
 	@Mock
 	private EnderecoService enderecoService;
-	
+
 	@Mock
 	private EnderecoRepository enderecoRepository;
-	
+
 	@BeforeEach
-	public void init() {
+	void init() {
 		MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 	}
-	
+
 	@Test
-	public void retornaEnderecoCepEncontrado() {
-		
+	void retornaEnderecoCepEncontrado() {
+
 		String cep = "17526000";
 		Endereco endereco = new Endereco();
 		endereco.setCep(cep);
 		endereco.setLogradouro("Avenida Manoel Pereira");
-		
+
 		when(enderecoService.buscarEnderecoPorCep(cep)).thenReturn(Optional.of(endereco));
 		when(enderecoRepository.findById(cep)).thenReturn(Optional.of(endereco));
-		
-		
+
 		ResponseEntity<EnderecoDTO> enderecoRetornado = enderecoController.buscaEnderecoPorCep(new CepRequest(cep));
-		
-		assertThat(enderecoRetornado.getStatusCode().is2xxSuccessful());
-		Assertions.assertEquals(enderecoRetornado.getBody().getRua(), "Avenida Manoel Pereira");
+
+		assertThat(enderecoRetornado.getStatusCode().is2xxSuccessful()).isTrue();
+		Assertions.assertEquals("Avenida Manoel Pereira", enderecoRetornado.getBody().getRua());
 	}
-	
+
 	@Test
-	public void retorna404CepValidoInexistente() {
-		
+	void retorna404CepValidoInexistente() {
+
 		String cep = "10203040";
-		
+
 		when(enderecoService.buscarEnderecoPorCep(cep)).thenReturn(Optional.ofNullable(null));
 		when(enderecoRepository.findById(cep)).thenReturn(null);
-		
-		
+
 		ResponseEntity<EnderecoDTO> enderecoRetornado = enderecoController.buscaEnderecoPorCep(new CepRequest(cep));
-		
-		assertEquals(enderecoRetornado.getStatusCode().value(), 404);
+
+		assertEquals(404, enderecoRetornado.getStatusCode().value());
 
 	}
-	
+
 }

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class EnderecoControllerIntegrationTest {
+class EnderecoControllerIntegrationTest {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -25,61 +25,57 @@ public class EnderecoControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
+	static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
 	@Test
-	public void retornaEnderecoCepValido() throws Exception {
+	void retornaEnderecoCepValido() throws Exception {
 
 		String cep = "17526760";
 
-		MvcResult mvcResult = mockMvc.perform(
-				MockMvcRequestBuilders.post("/api/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
-				.andReturn();
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/endereco")
+				.contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep))).andReturn();
 
 		EnderecoDTO enderecoDTO = stringToEnderecoDTO(mvcResult.getResponse().getContentAsString());
 
-		Assertions.assertEquals(mvcResult.getResponse().getStatus(), 200);
+		Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
 		Assertions.assertEquals("Avenida Maria Fernandes Cavallari - de 3150/3151 a 3298/3299", enderecoDTO.getRua());
 
 	}
 
 	@Test
-	public void retornaEnderecoCepValidoAproximado() throws Exception {
+	void retornaEnderecoCepValidoAproximado() throws Exception {
 		String cep = "17526123";
 
-		MvcResult mvcResult = mockMvc.perform(
-				MockMvcRequestBuilders.post("/api/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
-				.andReturn();
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/endereco")
+				.contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep))).andReturn();
 
-		Assertions.assertEquals(mvcResult.getResponse().getStatus(), 200);
+		Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
 		Assertions.assertTrue(mvcResult.getResponse().getContentAsString().contains("SP"));
 	}
 
 	@Test
-	public void retornaMensagemCepInvalidoSeCepNaoEstiverNoFormatoEsperado() throws Exception {
+	void retornaMensagemCepInvalidoSeCepNaoEstiverNoFormatoEsperado() throws Exception {
 		String cep = "1752670";
 
-		MvcResult mvcResult = mockMvc.perform(
-				MockMvcRequestBuilders.post("/api/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
-				.andReturn();
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/endereco")
+				.contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep))).andReturn();
 
-		Assertions.assertEquals(mvcResult.getResponse().getStatus(), 400);
+		Assertions.assertEquals(400, mvcResult.getResponse().getStatus());
 		Assertions.assertTrue(mvcResult.getResponse().getContentAsString().contains("CEP inválido"));
 	}
 
 	@Test
-	public void retornaStatus404QuandoEnderecoNaoFoiEncontrado() throws Exception {
+	void retornaStatus404QuandoEnderecoNaoFoiEncontrado() throws Exception {
 		String cep = "99999999";
 
-		MvcResult mvcResult = mockMvc.perform(
-				MockMvcRequestBuilders.post("/api/endereco").contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep)))
-				.andReturn();
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/endereco")
+				.contentType(APPLICATION_JSON_UTF8).content(asJsonString(cep))).andReturn();
 
-		Assertions.assertEquals(mvcResult.getResponse().getStatus(), 404);
+		Assertions.assertEquals(404, mvcResult.getResponse().getStatus());
 	}
 
-	public String asJsonString(final Object obj) {
+	String asJsonString(final Object obj) {
 		try {
 			return objectMapper.writeValueAsString(obj);
 		} catch (Exception e) {
@@ -87,7 +83,7 @@ public class EnderecoControllerIntegrationTest {
 		}
 	}
 
-	public EnderecoDTO stringToEnderecoDTO(String response) {
+	EnderecoDTO stringToEnderecoDTO(String response) {
 		try {
 			return objectMapper.readValue(response, EnderecoDTO.class);
 		} catch (Exception e) {
