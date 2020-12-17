@@ -1,3 +1,4 @@
+INSERT INTO endereco (cep, logradouro, bairro, cidade, uf) VALUES ('17526769', 'Rua Antonio Freitas', 'Loteamento Residencial e Comercial Fazenda São Sebastião', 'Marília', 'SP');
 INSERT INTO endereco (cep, logradouro, bairro, cidade, uf) VALUES ('17526760', 'Avenida Maria Fernandes Cavallari - de 3150/3151 a 3298/3299', 'Altos da Colina', 'Marília', 'SP');
 INSERT INTO endereco (cep, logradouro, bairro, cidade, uf) VALUES ('17526700', 'Rua Vereador Delmiro Zumioti', 'Vereador Eduardo Andrade Reis', 'Marília', 'SP');
 INSERT INTO endereco (cep, logradouro, bairro, cidade, uf) VALUES ('17526000', 'Avenida Manoel Pereira', 'Jardim Morumbi', 'Marília', 'SP');
