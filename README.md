@@ -12,7 +12,7 @@ Se informado um CEP inválido, deve retornar uma mensagem reportando o erro: "CE
 
 O serviço recebe e responde no formato JSON.
 
-** Exemplo: **
+**Exemplo:**
 
 Requisição
 ```shell
@@ -46,21 +46,21 @@ Resposta
 
 Dividida em 3 camadas
 
-** Persistência **
+**Persistência**
 Foi criado a interface EnderecoRepository herdando de JpaRepository (Spring Data) para realizar operação de pesquisa no banco H2.
 Também foi criado a classe modelo Endereco para armazenar as informações de Rua, Bairro, Cidade, Estado e CEP. O mapeamento objeto-relacional é feito com JPA (Hibernate).
 
 
-** Negócio **
+**Negócio**
 Foi criado a classe EnderecoService para checar a existência do endereço e se necessário pesquisar pelos CEPs alternativos.
 
-** Apresentação **
+**Apresentação**
 Foi criado a classe EnderecoController sendo esse o responsável por expor e receber a requisição. Quando recebe um CEP válido é gerado um Log.
 Foi criado a classe EnderecoDTO para flexibilizar a formatação do retorno da API, independente do modelo do banco de dados.
 Foi criado a classe ControllerExceptionHandler para retornar mensagem de erro tratada.
 
 
-** Testes **
+**Testes**
 A classe EnderecoServiceTest possui métodos para validar os cenários de (CEP válido, inválido, não encontrado) testando a integração da classe EnderecoService com a interface EnderecoRepository.
 
 Foi criado a classe EnderecoControllerTest com objetivo de simular o comportamento do método buscaEnderecoPorCep(cep) para vários cenários também utilizando dados mocados.
