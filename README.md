@@ -77,4 +77,4 @@ O arquivo "import.sql" é um script SQL para popular o banco de dados com os end
 A documentação da API foi feita com Swagger e pode ser acessada em: 
 http://localhost:8080/swagger-ui/index.html
 
-O arquivo Dockerfile gera uma imagem para o Docker.
+Foi criado um arquivo Dockerfile que gera uma imagem para o Docker.
