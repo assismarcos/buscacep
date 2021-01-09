@@ -5,7 +5,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Usuario {
@@ -16,7 +15,7 @@ public class Usuario {
 	@NotEmpty
 	private String senha;
 
-	@NotNull
+	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	private Funcao funcao;
 
