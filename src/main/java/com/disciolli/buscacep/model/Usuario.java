@@ -5,7 +5,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,14 +18,14 @@ public class Usuario {
 	@NotEmpty
 	private String senha;
 
-	@NotNull
+	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	private Funcao funcao;
 
 	public Usuario() {
 	}
 
-	public Usuario(String nome, @NotEmpty String senha, @NotNull Funcao funcao) {
+	public Usuario(String nome, String senha, Funcao funcao) {
 		this.nome = nome;
 		this.senha = senha;
 		this.funcao = funcao;
