@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,8 +21,10 @@ import com.disciolli.buscacep.service.UsuarioDetailsService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
 /**
  * Classe utilitaria para criar e validar o Token JWT.
+ * 
  * @author Disciolli
  *
  */
@@ -36,8 +37,11 @@ public class JwtTokenProvider {
 	@Value("${security.jwt.token.expirems:3600000}") // 1h
 	private long validityInMilliseconds;
 
-	@Autowired
 	private UsuarioDetailsService usuarioDetails;
+
+	public JwtTokenProvider(UsuarioDetailsService usuarioDetails) {
+		this.usuarioDetails = usuarioDetails;
+	}
 
 	@PostConstruct
 	protected void init() {

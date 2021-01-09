@@ -7,15 +7,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Usuario {
 
 	@Id
 	private String nome;
 
-	@JsonIgnore
 	@NotEmpty
 	private String senha;
 
@@ -26,7 +23,7 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(String nome, @NotEmpty String senha, @NotNull Funcao funcao) {
+	public Usuario(String nome, String senha, Funcao funcao) {
 		this.nome = nome;
 		this.senha = senha;
 		this.funcao = funcao;
