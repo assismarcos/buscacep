@@ -13,7 +13,7 @@ import com.disciolli.buscacep.repository.EnderecoRepository;
 public class EnderecoService {
 
 	private EnderecoRepository enderecoRepository;
-	
+
 	public EnderecoService(EnderecoRepository enderecoRepository) {
 		this.enderecoRepository = enderecoRepository;
 	}
@@ -37,6 +37,11 @@ public class EnderecoService {
 		return end;
 	}
 
+	/**
+	 * Retorna a sequencia de CEPs substituindo por '0' da direita para esquerda.
+	 * @param cep
+	 * @return
+	 */
 	private List<String> obterCepsAprox(String cep) {
 		List<String> ret = new ArrayList<>();
 
@@ -49,6 +54,5 @@ public class EnderecoService {
 
 		return ret;
 	}
-
 
 }

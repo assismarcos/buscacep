@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class CepRequest {
 
-	@ApiModelProperty(value = "CEP", example = "01310-100")
+	@ApiModelProperty(value = "CEP", example = "01310-100", required = true)
 	@Pattern(regexp = "\\d{8}|[0-9]{5}-[0-9]{3}", message = "CEP inválido")
 	private String cep;
 
