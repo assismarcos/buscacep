@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private JwtTokenFilter jwtTokenFilter;
-	
+
 	public WebSecurityConfig(JwtTokenFilter jwtTokenFilter) {
 		this.jwtTokenFilter = jwtTokenFilter;
 	}
@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		// Habilita CORS para permitir requisicao de aplicacoes externas e desabilita CSRF.
+		// Habilita CORS para permitir requisicao de aplicacoes externas e desabilita CSRF
 		http.cors().and().csrf().disable();
 
 		// Nao sera necessario criar sessao pois o token eh enviado na requisicao http.
@@ -57,7 +57,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/swagger-ui/**")//
 
 				// Apenas para teste permite acessar o console do H2 Database sem autenticacao.
-				.and().ignoring().antMatchers("/h2-console/**");
+				.and().ignoring().antMatchers("/h2-console/**")//
+				// Permitindo acessar os endpoints do Actuator (metricas)
+				.and().ignoring().antMatchers("/actuator/**");
 	}
 
 	@Override
