@@ -57,9 +57,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/swagger-ui/**")//
 
 				// Apenas para teste permite acessar o console do H2 Database sem autenticacao.
-				.and().ignoring().antMatchers("/h2-console/**")//
+				.antMatchers("/h2-console/**")//
 				// Permitindo acessar os endpoints do Actuator (metricas)
-				.and().ignoring().antMatchers("/actuator/**");
+				.antMatchers("/actuator/**");
 	}
 
 	@Override
