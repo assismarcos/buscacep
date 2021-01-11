@@ -29,7 +29,7 @@ public class LoginControllerTest {
 
 	@Autowired
 	private ObjectMapper objectMapper;
-	
+
 	private String usuario = "admin@teste.com.br";
 	private String senha = "Admin@123";
 
@@ -44,7 +44,14 @@ public class LoginControllerTest {
 		LoginResponse loginResponse = stringToLoginResponse(mvcResult.getResponse().getContentAsString());
 		assertNotNull(loginResponse.getToken());
 	}
-	
+
+	@Test
+	void impedirLoginSenhaInvalida() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/login").contentType(APPLICATION_JSON_UTF8)
+				.content(String.format(jsonTemplate, usuario, "123456"))).andExpect(status().isUnauthorized())
+				.andReturn();
+	}
+
 	LoginResponse stringToLoginResponse(String response) {
 		try {
 			return objectMapper.readValue(response, LoginResponse.class);
