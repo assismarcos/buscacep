@@ -34,7 +34,7 @@ public class Endereco {
 	}
 
 	public EnderecoDTO toDTO() {
-		return new EnderecoDTO(logradouro, bairro, cidade, uf);
+		return new EnderecoDTO(getLogradouro(), getBairro(), getCidade(), getUf());
 	}
 
 	public String getCep() {

@@ -1,11 +1,12 @@
 package com.disciolli.buscacep.service.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ class EnderecoServiceTest {
 
 		Optional<Endereco> endereco = enderecoService.buscarEnderecoPorCep(cep);
 
-		Assertions.assertEquals("Avenida Manoel Pereira", endereco.get().getLogradouro());
+		assertEquals("Avenida Manoel Pereira", endereco.get().getLogradouro());
 	}
 
 	@Test
@@ -43,7 +44,7 @@ class EnderecoServiceTest {
 		when(enderecoRepository.findById(cep)).thenReturn(null);
 
 		Optional<Endereco> enderecoMock = enderecoService.buscarEnderecoPorCep(cep);
-		Assertions.assertThrows(NoSuchElementException.class, () -> {
+		assertThrows(NoSuchElementException.class, () -> {
 			enderecoMock.get();
 		});
 	}
@@ -59,8 +60,8 @@ class EnderecoServiceTest {
 
 		Optional<Endereco> endereco = enderecoService.buscarEnderecoPorCep(cepInexistente);
 
-		Assertions.assertEquals(true, endereco.isPresent());
-		Assertions.assertEquals("Rua Itália - de 292/293 ao fim", endereco.get().getLogradouro());
+		assertEquals(true, endereco.isPresent());
+		assertEquals("Rua Itália - de 292/293 ao fim", endereco.get().getLogradouro());
 	}
 
 }

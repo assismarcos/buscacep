@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -56,7 +55,7 @@ class EnderecoControllerTest {
 		ResponseEntity<EnderecoDTO> enderecoRetornado = enderecoController.buscaEnderecoPorCep(new CepRequest(cep));
 
 		assertThat(enderecoRetornado.getStatusCode().is2xxSuccessful()).isTrue();
-		Assertions.assertEquals("Avenida Manoel Pereira", enderecoRetornado.getBody().getRua());
+		assertEquals("Avenida Manoel Pereira", enderecoRetornado.getBody().getRua());
 	}
 
 	@Test

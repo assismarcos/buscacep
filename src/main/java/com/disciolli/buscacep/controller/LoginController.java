@@ -1,5 +1,7 @@
 package com.disciolli.buscacep.controller;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -29,7 +31,7 @@ public class LoginController {
 
 	@PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Autenticar")
-	public LoginResponse login(@ApiParam("Credencial") @RequestBody UsuarioRequest credencial) {
+	public LoginResponse login(@ApiParam("Credencial") @Valid @RequestBody UsuarioRequest credencial) {
 		logger.info("Autenticando usuario [{}]", credencial.getUsuario());
 		return new LoginResponse(usuarioService.signin(credencial.getUsuario(), credencial.getSenha()));
 	}
