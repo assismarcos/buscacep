@@ -16,7 +16,7 @@ O serviço recebe e responde no formato JSON.
 
 Ao realizar o login será retornado o token JWT que deverá ser enviado na consulta do CEP. Esse token expira em 30 minutos (configurável).
 
-**Exemplo:**
+**Exemplos:**
 
 Login - Requisição
 ```shell
@@ -50,6 +50,23 @@ Consulta CEP - Resposta
     "cidade": "Marília",
     "estado": "SP"
 }
+```
+
+Cadastrar usuário - Requisição
+```shell
+curl --location --request POST 'http://localhost:8080/api/usuario/cadastrar' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0ZXN0ZS5jb20uYnIiLCJhdXRoIjp7ImF1dGhvcml0eSI6IlJPTEVfQURNSU4ifSwiaWF0IjoxNjEwMzQ3Mzc2LCJleHAiOjE2MTAzNDkxNzZ9.wPcFvhLArhP-z7cIouJaVCa0L4IsoSqPYZ0xCLI0508' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "usuario": "user2@teste.com.br",
+    "senha": "User2@123"
+}'
+```
+
+Excluir usuário - Requisição
+```shell
+curl --location --request DELETE 'http://localhost:8080/api/usuario/user2@teste.com.br' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB0ZXN0ZS5jb20uYnIiLCJhdXRoIjp7ImF1dGhvcml0eSI6IlJPTEVfQURNSU4ifSwiaWF0IjoxNjEwMzQ3Mzc2LCJleHAiOjE2MTAzNDkxNzZ9.wPcFvhLArhP-z7cIouJaVCa0L4IsoSqPYZ0xCLI0508'
 ```
 
 ## Tecnologias Utilizadas
