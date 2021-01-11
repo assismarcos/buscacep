@@ -72,9 +72,12 @@ Dividida em 3 camadas
 **Persistência**
 
 Interface EnderecoRepository herda de JpaRepository (Spring Data) para realizar operação de pesquisa do endereço no banco de dados.
+
 Interface UsuarioRepository herda de JpaRepository (Spring Data) para pesqquisar, incluir e excluir usuário no banco de dados.
+
 Foi criado a classe modelo Endereco para armazenar as informações de Rua, Bairro, Cidade, Estado e CEP.
 Também foi criado a classe modelo Usuario para armazenar as credenciais de acesso.
+
 O mapeamento objeto-relacional é feito com JPA (Hibernate).
 
 
@@ -82,14 +85,18 @@ O mapeamento objeto-relacional é feito com JPA (Hibernate).
 **Negócio**
 
 Foi criado a classe EnderecoService para checar a existência do endereço e se necessário pesquisar pelos CEPs alternativos.
+
 Também foi criado a classe UsuarioService para permitir realizar login e incluir/excluir usuário.
 
 **Apresentação**
 
 Classe EnderecoController responsável por expor e receber a requisição. Quando recebe um CEP válido é gerado um Log.
+
 Classe EnderecoDTO para flexibilizar a formatação do retorno da API, independente do modelo do banco de dados.
 Foram criadas as classes ControllerExceptionHandler/CustomException/ErrorMsg para retornar mensagem de erro tratada.
+
 A classe LoginController expõe o endpoint para autenticação.
+
 A classe UsuarioController expõe os endpoints para incluir e excluir usuário.
 
 ## Testes
@@ -110,12 +117,14 @@ Foi utilizado a biblioteca Jacoco para geração de relatório de cobertura dos 
 O arquivo "import.sql" é um script SQL para popular o banco de dados com os endereços para teste e também 2 usuários, sendo:
 
 admin@teste.com.br
+
 Admin@123
 
 user@teste.com.br
+
 User@123
 
-Foi disponibilizado um endpoint para extração de métricas.
+Foi disponibilizado um endpoint para extração de métricas: 
 http://localhost:8080/actuator
 
 A documentação da API foi feita com Swagger e pode ser acessada em: 
